@@ -82,8 +82,8 @@ proc listDrivers*(con: ODBCConnection = nil): seq[SQLDriverInfo] =
     direction = SQL_FETCH_NEXT
     result.add(newDriverInfo)
 
-    ret = SQLDrivers(env, direction, driver, driverBufLen.TSqlSmallInt,
-      addr driver_ret, attr, attrBufLen.TSqlSmallInt, addr attr_ret)
+    ret = SQLDrivers(env, direction, driver.cstring, driverBufLen.TSqlSmallInt,
+      addr driver_ret, attr.cstring, attrBufLen.TSqlSmallInt, addr attr_ret)
 
   freeEnvHandle(env, rpt)
 

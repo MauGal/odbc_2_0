@@ -9,7 +9,6 @@
 # sense to SQLBindCol simple types and SQLGetData larger, variable types in future.
 
 import
-  odbcsql,
   times,
   tables,
   typetraits,
@@ -20,6 +19,7 @@ when defined(odbcdebug):
 
 import
   odbc/[
+    odbcsql,
     odbctypes,
     odbcerrors,
     odbcreporting,

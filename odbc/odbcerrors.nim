@@ -64,7 +64,7 @@ proc getDiagMsg*(handle: SqlHandle, handleType: TSqlSmallInt): string =
     textLength: TSqlSmallInt
 
   result = ""
-  retval = SQLGetDiagRec(handleType.TSqlSmallInt, handle, recNo, sqlState, nativeError, msg, bufferLength, textLength)
+  retval = SQLGetDiagRec(handleType.TSqlSmallInt, handle, recNo, sqlState.cstring, nativeError, msg.cstring, bufferLength, textLength)
   while retval != SQL_NO_DATA:
     recNo += 1
 
@@ -73,7 +73,7 @@ proc getDiagMsg*(handle: SqlHandle, handleType: TSqlSmallInt): string =
     if sqlState[0]=='\0':
       sqlState = ""
     result &= "\nstate = '" & $sqlState & "' (err=" & $nativeError & ") message = '" & msg & "' "
-    retval = SQLGetDiagRec(handleType.TSqlSmallInt, handle, recNo, sqlState, nativeError, msg, bufferLength, textLength)
+    retval = SQLGetDiagRec(handleType.TSqlSmallInt, handle, recNo, sqlState.cstring, nativeError, msg.cstring, bufferLength, textLength)
     if retval<0:
       break
 

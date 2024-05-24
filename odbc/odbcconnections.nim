@@ -213,8 +213,8 @@ proc connect*(con: var ODBCConnection): bool =
   # M008: 'Dialog failed' may occur if you do not use SQL_DRIVER_NOPROMPT
   # and don't supply a login/pw as we are not passing a windows handle to display the dialog.
   var
-    ret = SQLDriverConnect(con.conHandle, nil, conStr, conStr.len.TSqlSmallInt,
-      outstr, 255.TSqlSmallInt, outstr_len, SQL_DRIVER_NOPROMPT)
+    ret = SQLDriverConnect(con.conHandle, nil, conStr.cstring, conStr.len.TSqlSmallInt,
+      outstr.cstring, 255.TSqlSmallInt, outstr_len, SQL_DRIVER_NOPROMPT)
 
   rptOnErr(con.reporting, ret, "SQLDriverConnect", con.conHandle, SQL_HANDLE_DBC.TSqlSmallInt)
   outstr.setLen(outstr_len.int)

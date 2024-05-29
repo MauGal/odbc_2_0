@@ -3,6 +3,7 @@ version       = "0.5.0"
 author        = "MauGal"
 description   = "Efficient ODBC queries using native Nim types"
 license       = "MIT"
+srcDir        = "src"
 
 # Deps
 requires: "nim >= 2.0.0"

@@ -1,4 +1,4 @@
-import ../odbc_2_0, wininifiles, times, os, unittest, json
+import ../src/odbc_2_0, wininifiles, times, os, unittest, json
 from math import pow
 from strutils import repeat
 

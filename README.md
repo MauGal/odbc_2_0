@@ -1,3 +1,11 @@
+# ODBC for Nim 2.0
+---
+This is a fork of coffeepots's version of the ODBC for Nim.
+Since the repository hasn't changed for 4 years and doesn't work properly with Nim version 2.0, I decided to make the small changes necessary to the excellent work done by coffeepots.
+In practice we took the odbcsql file from db_connector and added it directly to the odbc folder. Those few parts that give warnings during compilation have also been modified.
+   
+### Original README from coffeepots
+---
 # ODBC for Nim
 This module extends the odbcsql wrapper to allow easy access to databases through ODBC.
 

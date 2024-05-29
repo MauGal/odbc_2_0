@@ -1,11 +1,11 @@
 # Package
-version       = "0.3.0"
-author        = "coffeepots"
+version       = "0.4.0"
+author        = "MauGal"
 description   = "Efficient ODBC queries using native Nim types"
 license       = "MIT"
 
 # Deps
-requires: "nim >= 1.4"
+requires: "nim >= 2.0"
 
 # Tests
 task test, "Runs odbc test suite":

@@ -1,5 +1,5 @@
 # Package
-version       = "0.4.0"
+version       = "0.5.0"
 author        = "MauGal"
 description   = "Efficient ODBC queries using native Nim types"
 license       = "MIT"
@@ -9,4 +9,4 @@ requires: "nim >= 2.0"
 
 # Tests
 task test, "Runs odbc test suite":
-  exec "nim c -r tests/all"
+  exec "nim c -r tests/example"

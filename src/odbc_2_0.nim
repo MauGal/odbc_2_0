@@ -18,7 +18,7 @@ when defined(odbcdebug):
   import strformat
 
 import
-  odbc/[
+  odbc_2_0/[
     odbcsql,
     odbctypes,
     odbcerrors,

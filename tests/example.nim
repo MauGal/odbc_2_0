@@ -1,4 +1,4 @@
-import ../odbc
+import ../src/odbc_2_0
 
 #[
   A small example to ask SQL to generate the next days of the week from today,

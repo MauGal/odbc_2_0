@@ -9,7 +9,7 @@ type
   ODBCServerType* = enum SQLSever,ApacheDrill
   ODBCTransactionMode = enum tmAuto, tmManual
 
-  ODBCConnection* = ref object
+  ODBCConnectionObj = object
     envHandle*: SqlHEnv
     conHandle*: SqlHDBC
     conTimeout: int
@@ -34,6 +34,8 @@ type
     port*:int
     reporting*: ODBCReportState
 
+  ODBCConnection* = ref ODBCConnectionObj
+
 var
   defaultTimeout* = 30
   defaultReportingLevel* = rlErrorsAndInfo
@@ -56,10 +58,10 @@ proc disconnect*(con: ODBCConnection) =
 
 proc close*(con: ODBCConnection) = con.disconnect
 
-proc freeConnection*(con: ODBCConnection) =
+#[ proc `=destroy`(con: ODBCConnectionObj) =
   con.disconnect
   if con.envHandle != nil:
-    freeEnvHandle(con.envHandle, con.reporting)
+    freeEnvHandle(con.envHandle, con.reporting) ]#
 
 when defined(odbcUseQuitProc):
 
@@ -81,7 +83,7 @@ when defined(odbcUseQuitProc):
     when defined(odbcdebug): echo "Finalising connections done"
 
 proc newODBCConnection*(driver: string = "", host: string = "", database: string = "",server:ODBCServerType = SQLSever): ODBCConnection =
-  new(result, freeConnection)
+  new(result)
   result.connectionString = ""
   result.driver = driver
   result.host = host

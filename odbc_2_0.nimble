@@ -1,5 +1,5 @@
 # Package
-version       = "0.5.0"
+version       = "0.5.1"
 author        = "MauGal"
 description   = "Efficient ODBC queries using native Nim types"
 license       = "MIT"

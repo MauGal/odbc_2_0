@@ -49,7 +49,7 @@ proc initParam*: SQLParam =
 proc initParam*[T](value: T): SQLParam =
   result.field = newSQLField()
   result.field.setType(value)
-  result.data = initSQLData[value.type](value)
+  result.data = initSQLData(value)
 
 proc len*(params: SQLParams): int =
   result = params.items.len
@@ -100,7 +100,7 @@ proc `[]=`*(params: var SQLParams, index: string, data: int|int64|string|bool|fl
   var curParam: SQLParam = initParam()
 
   # param is just replaced
-  curParam.data = initSQLData[data.type](data)
+  curParam.data = initSQLData(data)
   curParam.field.setType(data)
 
   params[paramName] = curParam

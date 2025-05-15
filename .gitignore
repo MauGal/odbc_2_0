@@ -1,2 +1,5 @@
 tests/*.ini
 *.exe
+nimble.develop
+nimble.paths
+tests/checkVarCharMax.nim

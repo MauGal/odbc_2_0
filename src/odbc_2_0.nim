@@ -280,9 +280,13 @@ proc getColDetails(qry: SQLQuery, colID: int): SQLField =
     nullable: TSqlSmallInt
     retval = SQLDescribeCol(qry.handle, colID.TSqlSmallInt, colName.cstring, buflen, nameLen, sqlDataType, columnSize, decimalDigits, nullable)
   
-  if columnSize == 0:
+  if columnSize == 0 and (sqlDataType == SQL_VARCHAR):
+    #In this case driver has varchar(max)
+    columnSize = 1000
+  elif columnSize == 0:
     # The column size cannot be determined by the driver.
     columnSize = sqlDataType.TSqlULen
+    
 
   rptOnErr(qry.con.reporting, retval, "SQLDescribeCol", qry.handle, SQL_HANDLE_STMT.TSqlSmallInt)
   colName.setLen(nameLen)
